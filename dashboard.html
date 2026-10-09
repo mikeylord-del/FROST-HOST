@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FROST HOST | Dashboard</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080e18;color:#edf7ff;font-family:Arial,sans-serif}
+header{padding:20px;background:#101b2a;border-bottom:1px solid #253b50}
+.logo{color:#70dcff;font-weight:bold;font-size:22px}
+main{max-width:900px;margin:auto;padding:24px 16px}
+h1{font-size:30px}
+p{color:#a8bdd0;line-height:1.6}
+.panel{background:#101b2a;border:1px solid #253b50;border-radius:12px;padding:20px;margin:18px 0}
+label{display:block;margin:16px 0 8px}
+select,input{width:100%;padding:13px;border-radius:7px;border:1px solid #34506a;background:#091321;color:white}
+button{padding:12px 16px;border:0;border-radius:7px;background:#70dcff;color:#07111b;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.6}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.status{color:#ffcf70;font-weight:bold}
+a{color:#70dcff}
+.small{font-size:13px;color:#8ea7bd}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">❄ FROST HOST</div>
+  <p>Server Dashboard Demo</p>
+</header>
+
+<main>
+  <a href="index.html">← Back to Home</a>
+  <h1>My Dashboard</h1>
+  <p>Configure your Minecraft server demo.</p>
+
+  <section class="panel">
+    <h2>Create a Server</h2>
+
+    <label for="name">Server name</label>
+    <input id="name" maxlength="24" placeholder="My Minecraft World">
+
+    <label for="edition">Edition</label>
+    <select id="edition">
+      <option value="Java">Java Edition</option>
+      <option value="Bedrock">Bedrock Edition</option>
+    </select>
+
+    <label for="software">Software</label>
+    <select id="software">
+      <option>Vanilla</option>
+      <option>Paper</option>
+      <option>Bedrock Dedicated Server</option>
+    </select>
+
+    <button onclick="createServer()">Create Demo Server</button>
+    <p class="small">Demo only. No real server is created.</p>
+  </section>
+
+  <section class="panel">
+    <h2 id="serverName">No server selected</h2>
+    <p>Edition: <span id="serverEdition">—</span></p>
+    <p>Software: <span id="serverSoftware">—</span></p>
+    <p>Status: <span class="status" id="status">Not created</span></p>
+
+    <div class="actions">
+      <button onclick="changeStatus('Start requested')">Start</button>
+      <button onclick="changeStatus('Stop requested')">Stop</button>
+      <button onclick="changeStatus('Restart requested')">Restart</button>
+    </div>
+    <p class="small" id="notice">
+      These buttons only demonstrate the interface.
+    </p>
+  </section>
+</main>
+
+<script>
+let created = false;
+
+function createServer() {
+  const name = document.getElementById('name').value.trim();
+  const edition = document.getElementById('edition').value;
+  const software = document.getElementById('software').value;
+
+  if (!name) {
+    alert('Enter a server name first.');
+    return;
+  }
+
+  if (edition === 'Java' &&
+      software === 'Bedrock Dedicated Server') {
+    alert('Choose software compatible with Java Edition.');
+    return;
+  }
+
+  if (edition === 'Bedrock' && software !== 'Bedrock Dedicated Server') {
+    alert('Choose Bedrock Dedicated Server for this demo.');
+    return;
+  }
+
+  document.getElementById('serverName').textContent = name;
+  document.getElementById('serverEdition').textContent = edition;
+  document.getElementById('serverSoftware').textContent = software;
+  document.getElementById('status').textContent = 'Demo created';
+  document.getElementById('notice').textContent =
+    'Demo only. No Minecraft process is running.';
+  created = true;
+}
+
+function changeStatus(action) {
+  if (!created) {
+    alert('Create a demo server first.');
+    return;
+  }
+  document.getElementById('status').textContent = action;
+  document.getElementById('notice').textContent =
+    'This is a visual simulation, not a real server action.';
+}
+</script>
+</body>
+</html>
