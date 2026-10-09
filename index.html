@@ -1,266 +1,436 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FROST HOST | Minecraft Hosting</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d18">
+  <meta name="description" content="FROST HOST - A Minecraft Java and Bedrock hosting project.">
+  <title>FROST HOST | Minecraft Hosting</title>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #080d16;
-  color: #eef7ff;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-header {
-  height: 72px;
-  padding: 0 6%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #0d1522;
-  border-bottom: 1px solid #1c3046;
-}
+    body {
+      background: #080d18;
+      color: #f1f7ff;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
 
-.logo {
-  color: #70dcff;
-  font-size: 22px;
-  font-weight: 800;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-nav {
-  display: flex;
-  gap: 20px;
-}
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(8, 13, 24, 0.96);
+      border-bottom: 1px solid #1b2a3d;
+      padding: 16px 6%;
+    }
 
-nav a {
-  color: #b7c9db;
-  text-decoration: none;
-  font-size: 14px;
-}
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
 
-nav a:hover {
-  color: #70dcff;
-}
+    .logo {
+      color: #79e8ff;
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
 
-.hero {
-  padding: 100px 20px 80px;
-  text-align: center;
-  background: radial-gradient(
-    ellipse at top, #123451, #080d16 70%
-  );
-}
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
 
-.tag {
-  display: inline-block;
-  border: 1px solid #24638b;
-  color: #70dcff;
-  padding: 9px 15px;
-  border-radius: 30px;
-  font-size: 12px;
-  margin-bottom: 25px;
-}
+    .nav-links a:hover {
+      color: #79e8ff;
+    }
 
-h1 {
-  font-size: clamp(38px, 8vw, 70px);
-  line-height: 1.1;
-  margin-bottom: 20px;
-}
+    .hero {
+      min-height: 520px;
+      padding: 90px 7%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at top, #173c5a 0%, #080d18 65%);
+    }
 
-h1 span {
-  color: #70dcff;
-}
+    .tag {
+      display: inline-block;
+      border: 1px solid #32657b;
+      border-radius: 30px;
+      padding: 6px 15px;
+      color: #9ceeff;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
 
-.hero p {
-  max-width: 540px;
-  margin: auto;
-  color: #a8bdd0;
-  line-height: 1.8;
-}
+    h1 {
+      font-size: clamp(40px, 9vw, 76px);
+      line-height: 1.1;
+      margin-bottom: 22px;
+    }
 
-.buttons {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
+    .ice {
+      color: #79e8ff;
+    }
 
-button {
-  cursor: pointer;
-  border: 0;
-  border-radius: 8px;
-  padding: 14px 22px;
-  font-weight: bold;
-  background: #70dcff;
-  color: #07111b;
-}
+    .hero p {
+      max-width: 650px;
+      color: #aebed0;
+      font-size: 17px;
+      margin-bottom: 30px;
+    }
 
-.secondary {
-  color: white;
-  background: #142437;
-  border: 1px solid #29465f;
-}
+    .button {
+      display: inline-block;
+      background: #79e8ff;
+      color: #07111c;
+      border: 0;
+      border-radius: 10px;
+      padding: 14px 23px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
 
-.features {
-  padding: 55px 6%;
-}
+    .button:hover {
+      background: #b2f3ff;
+      transform: translateY(-2px);
+    }
 
-.features h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 30px;
-}
+    .button-secondary {
+      background: transparent;
+      border: 1px solid #42667c;
+      color: #eafaff;
+    }
 
-.cards {
-  max-width: 1000px;
-  margin: auto;
-  display: grid;
-  grid-template-columns:
-    repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-}
+    .button-secondary:hover {
+      background: #14283b;
+      color: white;
+    }
 
-.card {
-  padding: 25px;
-  border: 1px solid #20364a;
-  background: #0e1825;
-  border-radius: 14px;
-}
+    .actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
 
-.card .icon {
-  font-size: 30px;
-  margin-bottom: 16px;
-}
+    section {
+      padding: 65px 7%;
+      scroll-margin-top: 85px;
+    }
 
-.card h3 {
-  margin-bottom: 12px;
-}
+    .section-title {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
 
-.card p {
-  color: #a8bdd0;
-  font-size: 14px;
-  line-height: 1.7;
-}
+    .section-description {
+      color: #aebed0;
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 35px;
+    }
 
-footer {
-  text-align: center;
-  padding: 25px;
-  border-top: 1px solid #20364a;
-  color: #8299ad;
-  font-size: 13px;
-}
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
 
-@media (max-width: 520px) {
-  header {
-    height: auto;
-    padding: 20px;
-    flex-direction: column;
-    gap: 18px;
-  }
+    .card {
+      background: #0d1522;
+      border: 1px solid #202d3c;
+      border-radius: 18px;
+      padding: 26px;
+      transition: 0.2s;
+    }
 
-  nav {
-    gap: 14px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+    .card:hover {
+      border-color: #79e8ff;
+      transform: translateY(-3px);
+    }
 
-  .hero {
-    padding-top: 70px;
-  }
-}
-</style>
+    .card-icon {
+      font-size: 35px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      font-size: 21px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #aebed0;
+      margin-bottom: 18px;
+    }
+
+    .card ul {
+      color: #c5d5e5;
+      padding-left: 20px;
+      margin-bottom: 22px;
+    }
+
+    .status {
+      color: #8ee8b0;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    .dashboard-card {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+      background: linear-gradient(135deg, #10263a, #0d1522);
+      border-color: #31536b;
+    }
+
+    .dashboard-card p {
+      margin: 15px 0 24px;
+    }
+
+    .about-box {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+      color: #b9c8d8;
+    }
+
+    footer {
+      border-top: 1px solid #1b2a3d;
+      padding: 25px 6%;
+      text-align: center;
+      color: #8495a8;
+      font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 14px 5%;
+      }
+
+      .logo {
+        font-size: 19px;
+      }
+
+      .nav-links {
+        gap: 12px;
+        font-size: 13px;
+      }
+
+      .hero {
+        min-height: 470px;
+        padding: 65px 6%;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      section {
+        padding: 50px 6%;
+      }
+
+      .section-title {
+        font-size: 27px;
+      }
+
+      .button {
+        padding: 12px 17px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">❄ FROST HOST</div>
+  <header>
+    <nav>
+      <a class="logo" href="index.html">❄ FROST HOST</a>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#features">Features</a>
-    <a href="#servers">Servers</a>
-  </nav>
-</header>
-
-<main>
-  <section class="hero" id="home">
-    <div class="tag">❄ YOUR WORLD. YOUR RULES.</div>
-
-    <h1>Minecraft Hosting<br>
-      <span>Without Limits.</span>
-    </h1>
-
-    <p>
-      Create your Minecraft server and build your
-      community with FROST HOST. Explore server
-      software, versions and powerful management tools.
-    </p>
-
-    <div class="buttons">
-      <button onclick="dashboard()">
-        Get Started →
-      </button>
-
-      <button class="secondary"
-        onclick="document.getElementById('features')
-        .scrollIntoView({behavior:'smooth'})">
-        Explore Features
-      </button>
-    </div>
-  </section>
-
-  <section class="features" id="features">
-    <h2>Everything You Need</h2>
-
-    <div class="cards">
-      <div class="card">
-        <div class="icon">⚡</div>
-        <h3>Easy Management</h3>
-        <p>Manage your servers from one convenient panel.</p>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="#features">Features</a>
+        <a href="#servers">Servers</a>
+        <a href="#about">About</a>
+        <a href="dashboard.html">Dashboard</a>
       </div>
+    </nav>
+  </header>
 
-      <div class="card">
-        <div class="icon">🌍</div>
-        <h3>Java & Bedrock</h3>
-        <p>Build communities for PC and mobile players.</p>
+  <main>
+    <section class="hero">
+      <span class="tag">❄ YOUR MINECRAFT HOSTING PROJECT</span>
+
+      <h1>
+        YOUR WORLD.<br>
+        <span class="ice">YOUR RULES.</span>
+      </h1>
+
+      <p>
+        Welcome to FROST HOST — a Minecraft hosting project
+        designed with a clean interface and support plans for
+        Java and Bedrock players.
+      </p>
+
+      <div class="actions">
+        <a class="button" href="dashboard.html">
+          Open Dashboard →
+        </a>
+
+        <a class="button button-secondary" href="#features">
+          Explore Features
+        </a>
       </div>
+    </section>
 
-      <div class="card">
-        <div class="icon">🧊</div>
-        <h3>Flexible Software</h3>
-        <p>Plan for Vanilla, Paper and other supported software.</p>
+    <section id="features">
+      <h2 class="section-title">Why FROST HOST?</h2>
+
+      <p class="section-description">
+        Our goal is to build a simple and modern Minecraft
+        hosting experience.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Simple Control</h3>
+          <p>
+            A clean dashboard concept for managing your
+            Minecraft server settings.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🌍</div>
+          <h3>Java & Bedrock</h3>
+          <p>
+            A project designed with both Minecraft editions
+            in mind.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🧊</div>
+          <h3>Flexible Software</h3>
+          <p>
+            Plan for Vanilla, Paper and other supported
+            server software.
+          </p>
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="features" id="servers">
-    <h2>Ready to Build Your World?</h2>
-    <p style="text-align:center;color:#a8bdd0">
-      Your adventure starts with FROST HOST.
-    </p>
-    <div class="buttons">
-      <button onclick="dashboard()">Open Dashboard →</button>
-    </div>
-  </section>
-</main>
+    <section id="servers">
+      <h2 class="section-title">Choose Your Edition</h2>
 
-<footer>
-  © 2026 FROST HOST · Minecraft Hosting Project
-</footer>
+      <p class="section-description">
+        Explore the two Minecraft editions we plan to support.
+      </p>
 
-<script>
-function dashboard() {
-  alert("Welcome to FROST HOST! Dashboard is our next step.");
-}
-</script>
+      <div class="cards">
+        <article class="card">
+          <div class="card-icon">☕</div>
+          <h3>Java Edition</h3>
+          <p>
+            For PC players who want to explore plugins,
+            different server software and multiplayer worlds.
+          </p>
+          <ul>
+            <li>Vanilla server concept</li>
+            <li>Paper server concept</li>
+            <li>Plugin support planned</li>
+          </ul>
+          <a class="button" href="dashboard.html">
+            Open Dashboard →
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">📱</div>
+          <h3>Bedrock Edition</h3>
+          <p>
+            For compatible Minecraft Bedrock players on
+            mobile, console and Windows.
+          </p>
+          <ul>
+            <li>Bedrock server concept</li>
+            <li>Multiplayer support planned</li>
+            <li>Server controls planned</li>
+          </ul>
+          <a class="button" href="dashboard.html">
+            Open Dashboard →
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section id="dashboard">
+      <div class="card dashboard-card">
+        <div class="card-icon">🖥️</div>
+        <h2 class="section-title">Your Server Dashboard</h2>
+        <p>
+          Visit the FROST HOST dashboard demo to explore the
+          server creation interface.
+        </p>
+        <a class="button" href="dashboard.html">
+          Open Dashboard →
+        </a>
+        <div class="status">
+          Frontend demo — real server hosting is not connected yet.
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2 class="section-title">About FROST HOST</h2>
+
+      <div class="about-box">
+        <p>
+          FROST HOST is a Minecraft hosting project focused on
+          creating a modern, easy-to-use interface for Java and
+          Bedrock server management.
+        </p>
+        <p style="margin-top: 15px;">
+          We are building the project step by step, starting
+          with the website and dashboard.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 FROST HOST · Minecraft Hosting Project</p>
+    <p>Built for the Minecraft community ❄</p>
+  </footer>
 
 </body>
 </html>
